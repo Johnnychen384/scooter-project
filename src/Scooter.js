@@ -4,7 +4,7 @@ class NextSerial {
 
 
 
-class Scooter extends NextSerial{
+class Scooter{
   // scooter code here
   constructor(station){
     this.station = station
