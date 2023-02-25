@@ -26,9 +26,26 @@ describe('scooter methods', () => {
   })
 
   //dock method
+  test("Testing the Scooter classes dock method.", () => {
+    const newScooter = new Scooter("a")
+    newScooter.user = "Johnny"
+    newScooter.dock("b")
+    expect(newScooter.station).toBe("b")
+  })
 
   //requestRepair method
+  test("Testing the repair method for scooter", () => {
+    const newScooter = new Scooter("a")
+    newScooter.isBroken = true
+    
+    jest.useFakeTimers()
+    newScooter.requestRepair()
+    jest.advanceTimersByTime(5000)
+    expect(newScooter.isBroken).toBe(false)
+    jest.useRealTimers()
+  })
 
   //charge method
+  
 
 })
