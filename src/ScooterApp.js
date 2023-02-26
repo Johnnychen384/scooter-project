@@ -5,9 +5,9 @@ class ScooterApp {
   // ScooterApp code here
   constructor(){
     this.stations = {
-      a: [],
-      b: [],
-      c: []
+      "a": [],
+      "b": [],
+      "c": []
     }
 
     this.registeredUsers = {}
@@ -57,9 +57,10 @@ class ScooterApp {
   }
 
   createScooter(station) {
-    if(station in this.station){
+    const stationsArr = Object.keys(this.stations)
+    if(stationsArr.includes(station)){
       const newScooter = new Scooter(station)
-      this.station[station].push(newScooter)
+      this.stations[station].push(newScooter)
       console.log("created new scooter")
       return newScooter
 
@@ -71,9 +72,9 @@ class ScooterApp {
 
 
   dockScooter(scooter, station){
-    if(station in this.station){
-      if(!this.station[station].includes(scooter)){
-        this.station[station].push(scooter)
+    if(station in this.stations){
+      if(!this.stations[station].includes(scooter)){
+        this.stations[station].push(scooter)
         console.log("scooter is docked")
 
       } else {

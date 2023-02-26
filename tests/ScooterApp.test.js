@@ -70,6 +70,22 @@ test("Test logoutUser method for error", () => {
     consoleSpy.mockRestore()
 })
 
+// createScooter
+test("Test createScooter method", () => {
+    const newScooterApp = new ScooterApp()
+    const consoleSpy = jest.spyOn(console, 'log');
+
+    newScooterApp.createScooter("a")
+    expect(consoleSpy).toHaveBeenCalledWith("created new scooter")
+    consoleSpy.mockRestore()
+})
+
+test("Test createScooter method for error", () => {
+    const newScooterApp = new ScooterApp()
+
+    expect(() => newScooterApp.createScooter("gg")).toThrowError("no such station")
+})
+
 // rent scooter
 
 // dock scooter
