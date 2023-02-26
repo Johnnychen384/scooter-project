@@ -20,7 +20,7 @@ class Scooter{
       console.log("checked out by " + this.user)
     }
     else if (this.charge < 20) throw new Error("scooter needs to charge")
-    else throw new Error("scooter needs repair")
+    else if (this.isBroken === true) throw new Error("scooter needs repair")
   }
 
   dock(station){

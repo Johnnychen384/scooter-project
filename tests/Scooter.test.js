@@ -25,6 +25,14 @@ describe('scooter methods', () => {
     consoleSpy.mockRestore()
   })
 
+  test("Test if rent method throws error", () => {
+    const newScooter = new Scooter("a")
+    newScooter.isBroken = true
+    expect(() => newScooter.rent("Johnny")).toThrowError("scooter needs repair")
+  })
+
+
+
   //dock method
   test("Testing the Scooter classes dock method.", () => {
     const newScooter = new Scooter("a")
