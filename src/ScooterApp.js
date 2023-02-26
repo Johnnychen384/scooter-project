@@ -14,7 +14,14 @@ class ScooterApp {
   }
 
   registerUser(username, password, age){
-    if(age >= 18 && !username in this.registeredUsers){
+    if(age >= 18){
+
+      for(let object in this.registeredUsers){
+        if(object.username === username){
+          throw new Error("already registered")
+        } 
+      }
+      
       this.registeredUsers[username] = new User(username, password, age)
       console.log("user has been registered")
       return this.registeredUsers[username]
@@ -22,7 +29,7 @@ class ScooterApp {
     } else if (age < 18) {
       throw new Error("too young to register")
 
-    } else throw new Error("already registered")
+    }
   }
 
   loginUser(username, password){
@@ -95,7 +102,7 @@ class ScooterApp {
     }
 
 
-    console.log("Stations")
+    console.log("Stations:")
     for(let station in this.stations){
       console.log(station + ": " + station.length)
     }
