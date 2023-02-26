@@ -28,16 +28,19 @@ class Scooter{
     this.user = null
   }
 
-  charge() {
+  chargeBattery() {
     console.log('Starting charge');
     
     setInterval(() => {
-      this.charge += 10
-      console.log(this.charge)
-    }, 2000)
-
-    this.charge = 100
-    console.log('Charge complete');   
+      if (this.charge < 100) {
+        this.charge += 50;
+        console.log(this.charge);
+      } else {
+        this.charge = 100
+        console.log("Charge complete");
+        clearInterval();
+      }
+    }, 2000);  
   }
 
   requestRepair(){
@@ -47,6 +50,7 @@ class Scooter{
       this.isBroken = false
     }, 5000)
   }
+
 }
 
 

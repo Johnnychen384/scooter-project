@@ -46,6 +46,29 @@ describe('scooter methods', () => {
   })
 
   //charge method
-  
+  test("Testing scooter charge method", () => {
+    let newScooter = new Scooter("a")
+    newScooter.charge = 0
+    expect(newScooter.charge).toBe(0)
+
+    
+    jest.useFakeTimers()
+    const consoleSpy = jest.spyOn(console, 'log')
+
+    newScooter.chargeBattery()
+
+    expect(consoleSpy).toHaveBeenCalledWith("Starting charge")
+
+    jest.advanceTimersByTime(6000)
+
+
+
+    expect(consoleSpy).toHaveBeenCalledWith("Charge complete")
+
+    expect(newScooter.charge).toBe(100)
+
+    consoleSpy.mockRestore()
+    jest.useRealTimers()
+  })
 
 })
