@@ -21,7 +21,7 @@ class ScooterApp {
           throw new Error("already registered")
         } 
       }
-      
+
       this.registeredUsers[username] = new User(username, password, age)
       console.log("user has been registered")
       return this.registeredUsers[username]
@@ -33,16 +33,23 @@ class ScooterApp {
   }
 
   loginUser(username, password){
-    if(username in this.registeredUsers){
-      this.registeredUsers[username].login()
-
-    } else {
-      throw new Error("Username or password is incorrect.")
+    let user = this.registeredUsers[username];
+    if (!user) {
+      throw new Error("Username or password is incorrect.");
+    }
+    
+    try {
+      user.login(password);
+      console.log("Successful login");
+      return user;
+    } catch (error) {
+      throw new Error("Username or password is incorrect.");
     }
   }
 
   logoutUser(username){
-    if(username in this.registeredUsers){
+    const user = this.registeredUsers[username]
+    if(user){
       this.registeredUsers[username].logout()
       console.log("user is logged out")
 
