@@ -8,6 +8,7 @@ class User {
   }
 
   login(password){
+    // consider === 
     if(password == this.password) {
       this.loggedIn = true
       console.log("Successful login")

@@ -5,91 +5,94 @@ const ScooterApp = require('../src/ScooterApp')
 // ScooterApp tests here
 describe("Test scooterApp", () => {
 
+    // could also test creation of ScooterApp class here
+    // and verify its default attribute values
 
-// register user
-test("Test ScooterApp class's register method", () => {
-    const newScooterApp = new ScooterApp()
-    const consoleSpy = jest.spyOn(console, 'log');
-    newScooterApp.registerUser("asd", 123, 22)
-    expect(consoleSpy).toHaveBeenCalledWith("user has been registered")
-    consoleSpy.mockRestore()
-})
-
-
-test("Test ScooterApp class's register method to see if it throws error", () => {
-    const newScooterApp = new ScooterApp()
-    
-    expect(() => newScooterApp.registerUser("asd", 123, 10)).toThrowError("too young to register")
-})
+    // register user
+    test("Test ScooterApp class's register method", () => {
+        const newScooterApp = new ScooterApp()
+        const consoleSpy = jest.spyOn(console, 'log');
+        newScooterApp.registerUser("asd", 123, 22)
+        expect(consoleSpy).toHaveBeenCalledWith("user has been registered")
+        consoleSpy.mockRestore()
+    })
 
 
-// log in
-test("Test loginUser method from ScooterApp", () => {
-    const newScooterApp = new ScooterApp()
-    const consoleSpy = jest.spyOn(console, 'log');
-    newScooterApp.registerUser("asd", 123, 22)
-    newScooterApp.loginUser("asd", 123)
+    test("Test ScooterApp class's register method to see if it throws error", () => {
+        const newScooterApp = new ScooterApp()
+        
+        expect(() => newScooterApp.registerUser("asd", 123, 10)).toThrowError("too young to register")
+    })
 
-    expect(consoleSpy).toHaveBeenCalledWith("Successful login")
-    consoleSpy.mockRestore()
+    // consider including a test here to test whether user is already registered
 
-})
+    // log in
+    test("Test loginUser method from ScooterApp", () => {
+        const newScooterApp = new ScooterApp()
+        const consoleSpy = jest.spyOn(console, 'log');
+        newScooterApp.registerUser("asd", 123, 22)
+        newScooterApp.loginUser("asd", 123)
 
-test("Test loginUser method from ScooterApp for error", () => {
-    const newScooterApp = new ScooterApp()
-    
-    newScooterApp.registerUser("asd", 123, 22)
-    expect(() => newScooterApp.loginUser("asd", 12344)).toThrowError("Username or password is incorrect.")
+        expect(consoleSpy).toHaveBeenCalledWith("Successful login")
+        consoleSpy.mockRestore()
 
-})
+    })
 
-// log out
-test("Test logoutUser method", () => {
-    const newScooterApp = new ScooterApp()
-    const consoleSpy = jest.spyOn(console, 'log');
-    newScooterApp.registerUser("asd", 123, 22)
-    newScooterApp.loginUser("asd", 123)
+    test("Test loginUser method from ScooterApp for error", () => {
+        const newScooterApp = new ScooterApp()
+        
+        newScooterApp.registerUser("asd", 123, 22)
+        expect(() => newScooterApp.loginUser("asd", 12344)).toThrowError("Username or password is incorrect.")
 
-    expect(consoleSpy).toHaveBeenCalledWith("Successful login")
+    })
 
-    newScooterApp.logoutUser("asd")
-    expect(consoleSpy).toHaveBeenCalledWith("user is logged out")
+    // log out
+    test("Test logoutUser method", () => {
+        const newScooterApp = new ScooterApp()
+        const consoleSpy = jest.spyOn(console, 'log');
+        newScooterApp.registerUser("asd", 123, 22)
+        newScooterApp.loginUser("asd", 123)
 
-    consoleSpy.mockRestore()
-})
+        expect(consoleSpy).toHaveBeenCalledWith("Successful login")
 
-test("Test logoutUser method for error", () => {
-    const newScooterApp = new ScooterApp()
-    const consoleSpy = jest.spyOn(console, 'log');
-    newScooterApp.registerUser("asd", 123, 22)
-    newScooterApp.loginUser("asd", 123)
+        newScooterApp.logoutUser("asd")
+        expect(consoleSpy).toHaveBeenCalledWith("user is logged out")
 
-    expect(consoleSpy).toHaveBeenCalledWith("Successful login")
-    expect(() => newScooterApp.logoutUser("aaa")).toThrowError("no such user is logged in")
+        consoleSpy.mockRestore()
+    })
 
-    consoleSpy.mockRestore()
-})
+    test("Test logoutUser method for error", () => {
+        const newScooterApp = new ScooterApp()
+        const consoleSpy = jest.spyOn(console, 'log');
+        newScooterApp.registerUser("asd", 123, 22)
+        newScooterApp.loginUser("asd", 123)
 
-// createScooter
-test("Test createScooter method", () => {
-    const newScooterApp = new ScooterApp()
-    const consoleSpy = jest.spyOn(console, 'log');
+        expect(consoleSpy).toHaveBeenCalledWith("Successful login")
+        expect(() => newScooterApp.logoutUser("aaa")).toThrowError("no such user is logged in")
 
-    newScooterApp.createScooter("a")
-    expect(consoleSpy).toHaveBeenCalledWith("created new scooter")
-    consoleSpy.mockRestore()
-})
+        consoleSpy.mockRestore()
+    })
 
-test("Test createScooter method for error", () => {
-    const newScooterApp = new ScooterApp()
+    // createScooter
+    test("Test createScooter method", () => {
+        const newScooterApp = new ScooterApp()
+        const consoleSpy = jest.spyOn(console, 'log');
 
-    expect(() => newScooterApp.createScooter("gg")).toThrowError("no such station")
-})
+        newScooterApp.createScooter("a")
+        expect(consoleSpy).toHaveBeenCalledWith("created new scooter")
+        // we can also check the newScooterApp's stations attribute, 
+        // as well as the new created scooter's station attribute
+        consoleSpy.mockRestore()
+    })
 
-// rent scooter
+    test("Test createScooter method for error", () => {
+        const newScooterApp = new ScooterApp()
 
-// dock scooter
+        expect(() => newScooterApp.createScooter("gg")).toThrowError("no such station")
+    })
 
+    // rent scooter
 
+    // dock scooter
     
 })
