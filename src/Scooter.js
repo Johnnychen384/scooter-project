@@ -2,10 +2,7 @@ class NextSerial {
   static nextSerial = 0
 }
 
-
-
 class Scooter{
-  // scooter code here
   constructor(station){
     this.station = station
     this.user = null
@@ -17,10 +14,11 @@ class Scooter{
   rent(user){
     if(this.charge >= 20 && !this.isBroken) {
       this.user = user
+      // make sure to set station to null, as the scooter is no longer tied to a station
       console.log("checked out by " + this.user)
     }
     else if (this.charge < 20) throw new Error("scooter needs to charge")
-    else if (this.isBroken === true) throw new Error("scooter needs repair")
+    else if (this.isBroken) throw new Error("scooter needs repair")
   }
 
   dock(station){
@@ -31,6 +29,7 @@ class Scooter{
   chargeBattery() {
     console.log('Starting charge');
     
+    // love the creative setInterval usage here
     setInterval(() => {
       if (this.charge < 100) {
         this.charge += 50;
